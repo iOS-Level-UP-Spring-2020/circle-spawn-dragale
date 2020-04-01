@@ -56,7 +56,13 @@ class CircleSpawnController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     @objc func handleLongPress(_ longPress: UILongPressGestureRecognizer) {
-        print("long press detected")
+        guard let spawnedView = longPress.view else { return }
+        let longPressLocation = longPress.location(in: self.view)
+        
+        if longPress.state == UIGestureRecognizer.State.changed {
+            spawnedView.center.x = longPressLocation.x
+            spawnedView.center.y = longPressLocation.y
+        }
     }
     
 }
