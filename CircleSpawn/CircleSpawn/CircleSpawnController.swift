@@ -7,6 +7,8 @@ class CircleSpawnController: UIViewController, UIGestureRecognizerDelegate {
         view.backgroundColor = .white
     }
     
+    var locationInSubView = CGPoint()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -59,15 +61,18 @@ class CircleSpawnController: UIViewController, UIGestureRecognizerDelegate {
         guard let spawnedView = longPress.view else { return }
         let longPressLocation = longPress.location(in: self.view)
         
+        
         switch longPress.state {
         case .began:
             UIView.animate(withDuration: 0.2, animations: {
                 spawnedView.alpha = 0.5
-                spawnedView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                //spawnedView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             })
+            locationInSubView = longPress.location(in: longPress.view)
             view.bringSubviewToFront(spawnedView)
         case .changed:
-            spawnedView.center = longPressLocation
+            spawnedView.center.x = longPressLocation.x + (50 - locationInSubView.x)
+            spawnedView.center.y = longPressLocation.y + (50 - locationInSubView.y)
         case .ended, .cancelled:
             UIView.animate(withDuration: 0.2, animations: {
                 spawnedView.alpha = 1
