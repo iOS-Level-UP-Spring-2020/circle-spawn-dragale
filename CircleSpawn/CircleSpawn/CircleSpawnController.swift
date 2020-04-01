@@ -59,27 +59,24 @@ class CircleSpawnController: UIViewController, UIGestureRecognizerDelegate {
         guard let spawnedView = longPress.view else { return }
         let longPressLocation = longPress.location(in: self.view)
         
-        if longPress.state == .began {
+        switch longPress.state {
+        case .began:
             UIView.animate(withDuration: 0.2, animations: {
                 spawnedView.alpha = 0.5
                 spawnedView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             })
             view.bringSubviewToFront(spawnedView)
-        }
-        
-        if longPress.state == .changed {
-            spawnedView.center.x = longPressLocation.x
-            spawnedView.center.y = longPressLocation.y
-        }
-        
-        if longPress.state == .ended {
+        case .changed:
+            spawnedView.center = longPressLocation
+        case .ended, .cancelled:
             UIView.animate(withDuration: 0.2, animations: {
                 spawnedView.alpha = 1
                 spawnedView.transform = .identity
             })
+        default:
+            return
         }
     }
-    
 }
 
 extension CGFloat {
