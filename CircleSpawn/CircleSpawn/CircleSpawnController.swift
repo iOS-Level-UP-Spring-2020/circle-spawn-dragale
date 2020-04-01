@@ -59,10 +59,15 @@ class CircleSpawnController: UIViewController, UIGestureRecognizerDelegate {
         guard let spawnedView = longPress.view else { return }
         let longPressLocation = longPress.location(in: self.view)
         
-        if longPress.state == UIGestureRecognizer.State.changed {
+        if longPress.state == .began {
+            view.bringSubviewToFront(spawnedView)
+        }
+        
+        if longPress.state == .changed {
             spawnedView.center.x = longPressLocation.x
             spawnedView.center.y = longPressLocation.y
         }
+        
     }
     
 }
