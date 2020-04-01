@@ -1,52 +1,51 @@
 import UIKit
 
-class CircleSpawnController: UIViewController {
-    
-    // TODO: Assignment 1
+class CircleSpawnController: UIViewController, UIGestureRecognizerDelegate {
     
     override func loadView() {
         view = UIView()
         view.backgroundColor = .white
     }
     
-    private let startSize: CGSize = .init(width: 20, height: 20)
-    private var spawnedView: UIView?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let tripleTap = UITapGestureRecognizer(target: self, action: #selector(handleTripleTap))
-        tripleTap.numberOfTapsRequired = 3
-        
-        
         let doubleTap = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap))
         doubleTap.numberOfTapsRequired = 2
-        doubleTap.require(toFail: tripleTap)
-        view.addGestureRecognizer(tripleTap)
+        doubleTap.delegate = self
         view.addGestureRecognizer(doubleTap)
-        
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
     
     @objc func handleDoubleTap(_ tap: UITapGestureRecognizer) {
-        
         let size: CGFloat = 100
         let spawnedView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: size, height: size)))
         spawnedView.center = tap.location(in: view)
         spawnedView.backgroundColor = UIColor.randomBrightColor()
         spawnedView.layer.cornerRadius = size * 0.5
+        
         view.addSubview(spawnedView)
         
         spawnedView.alpha = 0
         spawnedView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+        
         UIView.animate(withDuration: 0.2, animations: {
             spawnedView.alpha = 1
             spawnedView.transform = .identity
         })
         
+        let tripleTap = UITapGestureRecognizer(target: self, action: #selector(handleTripleTap))
+        tripleTap.numberOfTapsRequired = 3
+        spawnedView.addGestureRecognizer(tripleTap)
     }
     
-    @objc func handleTripleTap(_ tap: UITapGestureRecognizer) {
+    @objc func handleTripleTap(tap: UITapGestureRecognizer) {
+        guard let spawnedView = tap.view else { return }
         
+        spawnedView.removeFromSuperview()
     }
     
 }
