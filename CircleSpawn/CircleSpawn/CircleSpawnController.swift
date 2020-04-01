@@ -12,12 +12,12 @@ class CircleSpawnController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(spawnCircle(_:)))
         tap.numberOfTapsRequired = 2
         view.addGestureRecognizer(tap)
     }
 
-    @objc func handleTap(_ tap: UITapGestureRecognizer) {
+    @objc func spawnCircle(_ tap: UITapGestureRecognizer) {
         
         let size: CGFloat = 100
         let spawnedView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: size, height: size)))
@@ -25,6 +25,15 @@ class CircleSpawnController: UIViewController {
         spawnedView.backgroundColor = .randomBrightColor()
         spawnedView.layer.cornerRadius = size * 0.5
         view.addSubview(spawnedView)
+        
+        spawnedView.alpha = 0
+        spawnedView.transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            spawnedView.alpha = 1
+            spawnedView.transform = .identity
+        })
+        
     }
 }
 
