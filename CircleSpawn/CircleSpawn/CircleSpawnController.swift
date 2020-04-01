@@ -63,6 +63,8 @@ class CircleSpawnController: UIViewController, UIGestureRecognizerDelegate {
             UIView.animate(withDuration: 0.2, animations: {
                 spawnedView.alpha = 0.5
                 spawnedView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                spawnedView.center.x = longPressLocation.x
+                spawnedView.center.y = longPressLocation.y
             })
             view.bringSubviewToFront(spawnedView)
         }
@@ -79,7 +81,6 @@ class CircleSpawnController: UIViewController, UIGestureRecognizerDelegate {
             })
         }
     }
-    
 }
 
 extension CGFloat {
