@@ -47,7 +47,12 @@ class CircleSpawnController: UIViewController, UIGestureRecognizerDelegate {
     
     @objc func handleTripleTap(_ tap: UITapGestureRecognizer) {
         guard let spawnedView = tap.view else { return }
-        spawnedView.removeFromSuperview()
+        UIView.animate(withDuration: 0.2, animations: {
+            spawnedView.alpha = 0
+            spawnedView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+        }, completion: { completed in
+            spawnedView.removeFromSuperview()
+        })
     }
     
     @objc func handleLongPress(_ longPress: UILongPressGestureRecognizer) {
