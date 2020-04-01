@@ -21,6 +21,13 @@ class CircleSpawnController: UIViewController, UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        if gestureRecognizer is UILongPressGestureRecognizer && otherGestureRecognizer is UILongPressGestureRecognizer {
+            return true
+        }
+        return false
+    }
 
     @objc func spawnCircle(_ tap: UITapGestureRecognizer) {
         
