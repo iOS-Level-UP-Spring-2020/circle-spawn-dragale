@@ -60,19 +60,18 @@ class CircleSpawnController: UIViewController, UIGestureRecognizerDelegate {
     @objc func handleLongPress(_ longPress: UILongPressGestureRecognizer) {
         guard let spawnedView = longPress.view else { return }
         let longPressLocation = longPress.location(in: self.view)
-        
-        
+
         switch longPress.state {
         case .began:
             UIView.animate(withDuration: 0.2, animations: {
                 spawnedView.alpha = 0.5
-                //spawnedView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                spawnedView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             })
             locationInSubView = longPress.location(in: longPress.view)
             view.bringSubviewToFront(spawnedView)
         case .changed:
-            spawnedView.center.x = longPressLocation.x + (50 - locationInSubView.x)
-            spawnedView.center.y = longPressLocation.y + (50 - locationInSubView.y)
+            spawnedView.center.x = longPressLocation.x + ((50 - locationInSubView.x) * 1.5)
+            spawnedView.center.y = longPressLocation.y + ((50 - locationInSubView.y) * 1.5)
         case .ended, .cancelled:
             UIView.animate(withDuration: 0.2, animations: {
                 spawnedView.alpha = 1
