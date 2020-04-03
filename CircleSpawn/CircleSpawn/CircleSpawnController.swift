@@ -13,9 +13,7 @@ class CircleSpawnController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap))
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(_:)))
         doubleTap.numberOfTapsRequired = 2
         doubleTap.delegate = self
         view.addGestureRecognizer(doubleTap)
@@ -87,4 +85,3 @@ extension UIColor {
                        alpha: 1.0)
     }
 }
-
