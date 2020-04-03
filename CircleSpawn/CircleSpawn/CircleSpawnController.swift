@@ -8,9 +8,12 @@ class CircleSpawnController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     var locationInSubView = CGPoint()
+    let animation = Animation()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         let doubleTap = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap))
         doubleTap.numberOfTapsRequired = 2
@@ -30,14 +33,7 @@ class CircleSpawnController: UIViewController, UIGestureRecognizerDelegate {
         spawnedView.layer.cornerRadius = size * 0.5
         
         view.addSubview(spawnedView)
-        
-        spawnedView.alpha = 0
-        spawnedView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-        
-        UIView.animate(withDuration: 0.2, animations: {
-            spawnedView.alpha = 1
-            spawnedView.transform = .identity
-        })
+        animation.spawn(object: spawnedView)
         
         let tripleTap = UITapGestureRecognizer(target: self, action: #selector(handleTripleTap))
         tripleTap.numberOfTapsRequired = 3
@@ -49,12 +45,7 @@ class CircleSpawnController: UIViewController, UIGestureRecognizerDelegate {
     
     @objc func handleTripleTap(_ tap: UITapGestureRecognizer) {
         guard let spawnedView = tap.view else { return }
-        UIView.animate(withDuration: 0.2, animations: {
-            spawnedView.alpha = 0
-            spawnedView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-        }, completion: { completed in
-            spawnedView.removeFromSuperview()
-        })
+        animation.despawnAnimation(object: spawnedView)
     }
     
     @objc func handleLongPress(_ longPress: UILongPressGestureRecognizer) {
@@ -63,20 +54,14 @@ class CircleSpawnController: UIViewController, UIGestureRecognizerDelegate {
 
         switch longPress.state {
         case .began:
-            UIView.animate(withDuration: 0.2, animations: {
-                spawnedView.alpha = 0.5
-                spawnedView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-            })
+            animation.pickUp(object: spawnedView)
             locationInSubView = longPress.location(in: longPress.view)
             view.bringSubviewToFront(spawnedView)
         case .changed:
             spawnedView.center.x = longPressLocation.x + ((50 - locationInSubView.x) * 1.5)
             spawnedView.center.y = longPressLocation.y + ((50 - locationInSubView.y) * 1.5)
         case .ended, .cancelled:
-            UIView.animate(withDuration: 0.2, animations: {
-                spawnedView.alpha = 1
-                spawnedView.transform = .identity
-            })
+            animation.putDown(object: spawnedView)
         default:
             return
         }
