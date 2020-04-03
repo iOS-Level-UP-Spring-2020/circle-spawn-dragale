@@ -18,7 +18,7 @@ class Animation {
         })
     }
     
-    func despawnAnimation(object: UIView) {
+    func despawn(object: UIView) {
         UIView.animate(withDuration: 0.2, animations: {
             object.alpha = 0
             object.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
