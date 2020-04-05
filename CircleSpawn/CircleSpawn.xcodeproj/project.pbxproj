@@ -12,6 +12,9 @@
 		77A8DE4C24329E3E00A22228 /* CircleSpawnController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A8DE4B24329E3E00A22228 /* CircleSpawnController.swift */; };
 		77A8DE5124329E4100A22228 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77A8DE5024329E4100A22228 /* Assets.xcassets */; };
 		77A8DE5424329E4100A22228 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77A8DE5224329E4100A22228 /* LaunchScreen.storyboard */; };
+		A5EE4CC72437AA3E00902BA0 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE4CC62437AA3E00902BA0 /* Animation.swift */; };
+		A5EE4CCC24387D4800902BA0 /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE4CCB24387D4800902BA0 /* CGFloat.swift */; };
+		A5EE4CCE24387D6900902BA0 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE4CCD24387D6900902BA0 /* UIColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		77A8DE5024329E4100A22228 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		77A8DE5324329E4100A22228 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		77A8DE5524329E4100A22228 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5EE4CC62437AA3E00902BA0 /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
+		A5EE4CCB24387D4800902BA0 /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
+		A5EE4CCD24387D6900902BA0 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +60,25 @@
 		77A8DE4624329E3E00A22228 /* CircleSpawn */ = {
 			isa = PBXGroup;
 			children = (
+				A5EE4CCA24387D2500902BA0 /* Extensions */,
 				77A8DE4724329E3E00A22228 /* AppDelegate.swift */,
 				77A8DE4924329E3E00A22228 /* SceneDelegate.swift */,
+				A5EE4CC62437AA3E00902BA0 /* Animation.swift */,
 				77A8DE4B24329E3E00A22228 /* CircleSpawnController.swift */,
 				77A8DE5024329E4100A22228 /* Assets.xcassets */,
 				77A8DE5224329E4100A22228 /* LaunchScreen.storyboard */,
 				77A8DE5524329E4100A22228 /* Info.plist */,
 			);
 			path = CircleSpawn;
+			sourceTree = "<group>";
+		};
+		A5EE4CCA24387D2500902BA0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A5EE4CCB24387D4800902BA0 /* CGFloat.swift */,
+				A5EE4CCD24387D6900902BA0 /* UIColor.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,8 +151,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5EE4CCC24387D4800902BA0 /* CGFloat.swift in Sources */,
+				A5EE4CCE24387D6900902BA0 /* UIColor.swift in Sources */,
 				77A8DE4C24329E3E00A22228 /* CircleSpawnController.swift in Sources */,
 				77A8DE4824329E3E00A22228 /* AppDelegate.swift in Sources */,
+				A5EE4CC72437AA3E00902BA0 /* Animation.swift in Sources */,
 				77A8DE4A24329E3E00A22228 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
